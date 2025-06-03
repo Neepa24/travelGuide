@@ -1,0 +1,700 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #e9e9f0;
+  text-decoration: inherit;
+  margin-right: 50px;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f7f7fa; /* Light background */
+  color: #222;         /* Darker text for contrast */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-image: url('assets/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* background:
+    linear-gradient(120deg,rgba(128,0,255,0.25) 0%,rgba(255,140,0,0.18) 100%),
+    url('/assets/hero-bg.PNG') center center/cover no-repeat; */
+}
+
+.hero-video-bg, .hero-lottie-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(120deg,rgba(0,0,0,0.55) 0%,rgba(128,0,255,0.18) 100%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  margin-top: 120px;
+  padding: 0; /* Remove padding */
+  border-radius: 0; /* Remove border radius */
+  background: none; /* Remove background */
+  box-shadow: none; /* Remove box shadow */
+  text-align: center;
+  color: #fff;
+  animation: fadeInDown 1s cubic-bezier(.4,0,.2,1);
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.hero-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.22);
+}
+.hero-title span {
+  display: block;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #ffe;
+  letter-spacing: 1px;
+  margin-top: 0.2em;
+}
+.explore-btn {
+  margin-bottom: 34px;
+  margin-top: 32px;
+  padding: 18px 48px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 32px;
+  background: linear-gradient(90deg,#ff8c00,#8000ff);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+.explore-btn:focus {
+  outline: 3px solid #ff8c00;
+  outline-offset: 2px;
+}
+.explore-btn:hover {
+  background: linear-gradient(90deg,#8000ff,#ff8c00);
+  transform: translateY(-2px) scale(1.07);
+  box-shadow: 0 8px 32px rgba(128,0,255,0.15);
+}
+
+/* 2. Animated Search Bar */
+.search-bar {
+  padding: 78px;
+  margin: 0 auto 60px auto;
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 60px 32px 28px 60px;
+  max-width: 1100px;
+  width: 95%;
+  position: relative;
+  z-index: 3;
+  animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* --- Search Tabs Bar --- */
+.search-tabs-bar {
+  background: #fff;
+  border-radius: 0 0 32px 32px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 24px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+/* --- Search Tabs --- */
+.search-tabs {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  align-items: flex-end;
+  background: #f7f7fa;
+  border-radius: 32px 32px 0 0;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(128,0,255,0.06);
+}
+
+/* --- Search Tab Button --- */
+.search-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  padding: 18px 38px 14px 38px;
+  background: none;
+  border: none;
+  border-radius: 24px 24px 0 0;
+  color: #444;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    box-shadow 0.3s,
+    transform 0.2s;
+  position: relative;
+  z-index: 1;
+  margin-right: 2px;
+}
+
+/* --- Active Tab --- */
+.search-tabs button.active {
+  background: linear-gradient(90deg, #ff8c00, #8000ff);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(128,0,255,0.08);
+  transform: translateY(-8px) scale(1.08);
+  z-index: 2;
+}
+
+/* --- Tab Icon --- */
+.search-tabs button i {
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+
+/* --- Search Form --- */
+.search-form {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.search-form input,
+.search-form select {
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  font-size: 1.1rem;
+  background: #fafaff;
+  color: #222;
+  min-width: 160px;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+  border: 1.5px solid #8000ff;
+  box-shadow: 0 0 0 2px #ff8c0033;
+}
+
+.search-btn {
+  padding: 16px 38px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(90deg,#ff8c00,#8000ff);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+  margin-left: 8px;
+}
+.search-btn:hover {
+  background: linear-gradient(90deg,#8000ff,#ff8c00);
+  transform: translateY(-2px) scale(1.07);
+  box-shadow: 0 8px 32px rgba(128,0,255,0.15);
+}
+.hero-title{
+  margin-top: 25px;
+}
+/* 3. Service Section */ 
+.services-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  margin: 80px auto 40px auto;
+  max-width: 1200px;
+}
+.service-card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  width: 270px;
+  min-height: 240px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  position: relative;
+  animation: cardEntry 0.7s cubic-bezier(.4,0,.2,1);
+}
+@keyframes cardEntry {
+  from { opacity: 0; transform: scale(0.8) translateY(40px);}
+  to { opacity: 1; transform: scale(1) translateY(0);}
+}
+.service-card:hover {
+  transform: scale(1.10) rotate(-2deg);
+  box-shadow: 0 16px 48px rgba(128,0,255,0.18);
+}
+.service-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 18px;
+  transition: transform 0.3s;
+}
+.service-card:hover .icon {
+  transform: scale(1.2) rotate(8deg);
+}
+.service-counter {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8000ff;
+  margin-top: 12px;
+  animation: counterPop 1s;
+}
+@keyframes counterPop {
+  0% { transform: scale(0.7);}
+  60% { transform: scale(1.2);}
+  100% { transform: scale(1);}
+}
+
+/* Add for card flip effect */
+.service-card {
+  perspective: 1000px;
+}
+.service-card-inner {
+  transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+  transform-style: preserve-3d;
+  position: relative;
+}
+.service-card.flipped .service-card-inner {
+  transform: rotateY(180deg);
+}
+.service-card-front, .service-card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+}
+.service-card-back {
+  transform: rotateY(180deg);
+}
+
+/* 4. Sticky Navbar */
+.sticky-navbar {
+  position: fixed;
+  top: 0; left: 0; width: 100vw;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background: rgba(24, 24, 24, 0.85);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  transition: background 0.4s, box-shadow 0.4s, top 0.3s;
+}
+.sticky-navbar.solid {
+  background: #181818ee;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+.sticky-navbar.hide {
+  top: -80px;
+}
+.sticky-navbar .nav-link.active {
+  color: #ff8c00;
+  border-bottom: 2px solid #ff8c00;
+  transition: border 0.2s;
+}
+
+/* 5. Testimonials Slider */
+.testimonials-section {
+  margin: 80px auto 40px auto;
+  max-width: 900px;
+  overflow: hidden;
+  position: relative;
+}
+.testimonials-slider {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.testimonial-card {
+  min-width: 320px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  padding: 36px 28px;
+  margin-bottom: 16px;
+  scroll-snap-align: start;
+  animation: fadeInUp 0.7s;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.testimonial-card:hover {
+  box-shadow: 0 16px 48px rgba(128,0,255,0.18);
+  transform: scale(1.04);
+}
+.testimonial-audio {
+  margin-top: 18px;
+}
+.audio-waveform {
+  width: 100%;
+  height: 32px;
+  background: repeating-linear-gradient(90deg,#ff8c00 0 2px,transparent 2px 8px);
+  border-radius: 8px;
+  animation: waveformMove 1.2s linear infinite;
+}
+@keyframes waveformMove {
+  0% { background-position-x: 0;}
+  100% { background-position-x: 32px;}
+}
+
+/* 6. Interactive Map */
+.map-section {
+  margin: 80px auto 40px auto;
+  max-width: 1100px;
+  position: relative;
+}
+.map-svg, .map-img {
+  width: 100%;
+  height: 400px;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  object-fit: cover;
+}
+.map-pin {
+  position: absolute;
+  width: 32px; height: 32px;
+  background: #ff8c00;
+  border-radius: 50%;
+  animation: pinBounce 1s infinite alternate;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+@keyframes pinBounce {
+  from { transform: translateY(0);}
+  to { transform: translateY(-12px);}
+}
+.map-popup {
+  position: absolute;
+  background: #fff;
+  color: #333;
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  animation: fadeInUp 0.4s;
+}
+
+/* 7. Footer with Newsletter */
+footer {
+  width: 100vw;
+  background: #181818;
+  color: #fff;
+  text-align: center;
+  padding: 56px 0 32px 0;
+  position: relative;
+  z-index: 1;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+.newsletter-cta {
+  margin-bottom: 24px;
+}
+.newsletter-cta h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.newsletter-cta form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.newsletter-cta input[type="email"] {
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #8000ff;
+  font-size: 1rem;
+  transition: box-shadow 0.3s, border 0.3s, background 0.3s;
+  outline: none;
+}
+.newsletter-cta input[type="email"]:focus {
+  box-shadow: 0 0 0 2px #ff8c0033;
+  border-color: #ff8c00;
+  background: #f3eaff;
+}
+.newsletter-cta input.sent {
+  background: #8000ff;
+  color: #fff;
+  border-color: #8000ff;
+  transition: background 0.3s, color 0.3s;
+}
+.newsletter-cta button {
+  padding: 12px 28px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(90deg,#ff8c00,#8000ff);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(128,0,255,0.10);
+  transition: background 0.3s, transform 0.2s;
+}
+.newsletter-cta button:hover,
+.newsletter-cta button:focus {
+  background: linear-gradient(90deg,#8000ff,#ff8c00);
+  transform: scale(1.07);
+}
+.newsletter-cta button.sent {
+  background: #8000ff;
+  color: #fff;
+  transition: background 0.3s, color 0.3s;
+}
+.footer-socials {
+  margin: 18px 0 0 0;
+}
+.footer-socials .icon {
+  font-size: 1.5rem;
+  margin: 0 10px;
+  color: #fff;
+  transition: color 0.3s, transform 0.2s;
+  display: inline-block;
+}
+.footer-socials .icon:hover {
+  color: #ff8c00;
+  transform: scale(1.2) rotate(-8deg);
+}
+.footer-copy {
+  margin-top: 18px;
+  font-size: 0.95rem;
+  color: #bbb;
+}
+
+/* General button hover effect */
+button,
+input[type="submit"],
+input[type="button"] {
+  transition: 
+    background 0.3s,
+    color 0.3s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+/* Primary gradient buttons (explore, search, newsletter, etc.) */
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.explore-btn:hover,
+.search-btn:hover,
+.newsletter-send:hover {
+  background: linear-gradient(90deg,#8000ff,#ff8c00);
+  color: #fff;
+  transform: translateY(-2px) scale(1.07);
+  box-shadow: 0 8px 32px rgba(128,0,255,0.15);
+}
+
+/* Search tab buttons */
+.search-tabs button:hover:not(.active) {
+  background: #f3eaff;
+  color: #8000ff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 2px 12px rgba(128,0,255,0.08);
+}
+
+/* Service card button (if any) */
+.service-card button:hover {
+  background: #ff8c00;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+/* Footer social icons already have hover, but for consistency: */
+.footer-socials .icon:hover {
+  color: #ff8c00;
+  transform: scale(1.2) rotate(-8deg);
+}
+
+/* Responsive: keep hover effects smooth on touch devices */
+@media (hover: none) {
+  button:hover,
+  input[type="submit"]:hover,
+  input[type="button"]:hover,
+  .search-tabs button:hover:not(.active),
+  .service-card button:hover {
+    filter: none;
+    background: inherit;
+    color: inherit;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Bonus: Dark Mode Toggle */
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 32px; right: 32px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  width: 56px; height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 200;
+  transition: background 0.3s;
+}
+.dark-mode-toggle:hover {
+  background: #ff8c00;
+}
+body.dark {
+  background: #181818;
+  color: #fff;
+  transition: background 0.5s, color 0.5s;
+}
+body.dark .hero-section,
+body.dark .services-section,
+body.dark .testimonials-section,
+body.dark .map-section,
+body.dark .search-bar {
+  background: #232323;
+  color: #fff;
+}
+body.dark .service-card,
+body.dark .testimonial-card,
+body.dark .map-popup {
+  background: #232323;
+  color: #fff;
+}
+body.dark .search-bar,
+body.dark .newsletter-input {
+  background: #232323;
+  color: #fff;
+}
+
+/* Center the main content */
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Only center vertically on mobile */
+  width: 100%;
+  max-width: 900px;   /* Desktop-friendly width */
+  margin: 32px auto;  /* Center horizontally */
+  padding: 24px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.03); /* Optional: subtle background */
+  border-radius: 12px;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 900px) {
+  .hero-title { font-size: 2.2rem; }
+  .hero-title span { font-size: 1.2rem; }
+  .search-bar { padding: 18px; }
+  .search-form { flex-direction: column; gap: 12px; }
+  .services-section { gap: 16px; }
+  .service-card { width: 95%; min-width: 200px;}
+}
+@media (max-width: 600px) {
+  .hero-content { margin-top: 60px; }
+  .search-bar { padding: 8px; }
+  .services-section { flex-direction: column; }
+  .service-card { width: 100%; }
+  .testimonials-slider { gap: 12px; }
+  .map-section { padding: 0 8px; }
+  .footer-socials { gap: 10px; }
+}
+
+@media (max-width: 1024px) {
+  .center-container {
+    max-width: 95%;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .center-container {
+    max-width: 100%;
+    padding: 8px;
+    margin: 8px;
+    border-radius: 0;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.service-card.animate-in {
+  animation: fadeInUp 0.8s cubic-bezier(.4,0,.2,1) forwards;
+}
